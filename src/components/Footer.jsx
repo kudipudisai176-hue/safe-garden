@@ -6,7 +6,7 @@ export default function Footer() {
     <footer className="bg-brand-950 text-white/75">
       <div className="mx-auto grid max-w-7xl gap-10 px-5 py-12 md:grid-cols-[1.4fr_.8fr_1fr] lg:px-8">
         <div>
-          <a href="#home" className="inline-flex items-center gap-3 text-white">
+          <a href="/#home" className="inline-flex items-center gap-3 text-white">
             <span className="flex h-11 w-11 items-center justify-center rounded-2xl bg-brand-300 font-display text-lg font-bold text-brand-950">S</span>
             <span>
               <span className="block font-display text-xl font-bold">{company.brand}</span>
@@ -18,10 +18,25 @@ export default function Footer() {
         <div>
           <h3 className="text-sm font-bold text-white">Quick Links</h3>
           <ul className="mt-4 space-y-2.5 text-sm">
-            {navItems.filter(({ id }) => id !== "home").map(({ id, label }) => (
-              <li key={id}><a href={`#${id}`} className="transition hover:text-brand-200">{label}</a></li>
+            {navItems.filter(({ id }) => id !== "home").map(({ id, label, path, children }) => (
+              <li key={id}>
+                {children ? (
+                  <>
+                    <span>{label}</span>
+                    <ul className="mt-2 space-y-2 border-l border-white/15 pl-3">
+                      {children.map((child) => (
+                        <li key={child.id}>
+                          <a href={`/#${child.id}`} className="transition hover:text-brand-200">{child.label}</a>
+                        </li>
+                      ))}
+                    </ul>
+                  </>
+                ) : (
+                  <a href={path || `/#${id}`} className="transition hover:text-brand-200">{label}</a>
+                )}
+              </li>
             ))}
-            <li><a href="#request" className="transition hover:text-brand-200">Request a Test</a></li>
+            <li><a href="/#request" className="transition hover:text-brand-200">Request a Test</a></li>
           </ul>
         </div>
         <div>

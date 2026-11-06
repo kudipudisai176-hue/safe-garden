@@ -47,11 +47,11 @@ export default function Hero() {
 
         <motion.div initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 1.3, duration: 0.7 }}
           className="mt-9 flex flex-col gap-3 sm:flex-row">
-          <motion.button whileHover={{ scale: 1.04 }} whileTap={{ scale: 0.97 }} onClick={() => go("services")}
+          <motion.button whileHover={{ scale: 1.04, y: -2 }} whileTap={{ scale: 0.97 }} onClick={() => go("services")}
             className="btn bg-[#549fe6] text-[#183e5c] hover:bg-[#78b4ec] focus-visible:ring-[#549fe6]">
             Explore Our Services <ArrowRight size={18} />
           </motion.button>
-          <motion.button whileHover={{ scale: 1.04 }} whileTap={{ scale: 0.97 }} onClick={() => go("contact")} className="btn btn-ghost">
+          <motion.button whileHover={{ scale: 1.04, y: -2 }} whileTap={{ scale: 0.97 }} onClick={() => go("contact")} className="btn btn-ghost">
             <MessageCircle size={18} /> Contact Us
           </motion.button>
         </motion.div>

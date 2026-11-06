@@ -8,7 +8,7 @@ function ParameterCard({ parameter, index, tone }) {
   return (
     <motion.article initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-30px" }} transition={{ duration: 0.4, delay: (index % 4) * 0.045 }}
-      className="group rounded-2xl border border-stone-200/80 bg-white p-4 shadow-sm transition duration-300 hover:-translate-y-1 hover:border-brand-200 hover:shadow-lg sm:p-5">
+    className="glass-card group rounded-2xl p-4 sm:p-5">
       <div className="flex items-start justify-between gap-3">
         <span className={`flex h-10 w-10 items-center justify-center rounded-xl ${
           "bg-brand-50 text-brand-800"
@@ -31,9 +31,9 @@ function TestingSection({ id, title, eyebrow, description, parameters, image, to
     <section id={id} className={`scroll-mt-20 py-20 sm:py-24 ${tone === "soil" ? "bg-white" : "bg-[#f4f8fc]"}`}>
       <div className="mx-auto max-w-7xl px-5 lg:px-8">
         <Reveal className="grid items-center gap-8 lg:grid-cols-[.8fr_1.2fr] lg:gap-14">
-          <div className="relative min-h-[240px] overflow-hidden rounded-[1.75rem] bg-brand-100 sm:min-h-[300px]">
+          <div className="group relative min-h-[240px] overflow-hidden rounded-[1.75rem] bg-brand-100 sm:min-h-[300px]">
             <img src={image} alt={`${title} laboratory testing`} loading="lazy"
-              className="absolute inset-0 h-full w-full object-cover transition duration-700 hover:scale-105"
+              className="absolute inset-0 h-full w-full object-cover transition duration-700 group-hover:scale-105"
               onError={(event) => { event.currentTarget.style.display = "none"; }} />
             <div className="absolute inset-0 bg-gradient-to-t from-brand-950/75 via-transparent to-transparent" />
             <div className="absolute bottom-5 left-5 flex items-center gap-3 text-white">
@@ -58,7 +58,7 @@ function TestingSection({ id, title, eyebrow, description, parameters, image, to
           ))}
         </div>
         <div className="mt-8 flex justify-center">
-          <a href="#request" className="inline-flex items-center gap-2 rounded-full bg-brand-800 px-6 py-3 text-sm font-bold text-white transition hover:bg-brand-900">
+          <a href="#request" className="glass-action inline-flex items-center gap-2 rounded-full bg-brand-800 px-6 py-3 text-sm font-bold text-white transition hover:bg-brand-900">
             Request {tone === "soil" ? "Soil" : "Water"} Testing <ArrowRight size={16} />
           </a>
         </div>

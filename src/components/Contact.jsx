@@ -20,7 +20,7 @@ export default function Contact() {
         </Reveal>
 
         <div className="mt-9 grid gap-6 lg:grid-cols-[.8fr_1.2fr]">
-          <Reveal delay={0.06} className="rounded-[1.75rem] bg-white p-6 shadow-sm ring-1 ring-stone-200 sm:p-8">
+          <Reveal delay={0.06} className="glass-card rounded-[1.75rem] p-6 sm:p-8">
             <h3 className="font-display text-xl font-bold text-stone-900">Laboratory Details</h3>
             <div className="mt-6 space-y-5">
               <ContactItem icon={MapPin} label="Laboratory Name" value={company.fullName} />
@@ -32,7 +32,7 @@ export default function Contact() {
             </div>
             {whatsapp ? (
               <a href={`https://wa.me/${whatsapp}`} target="_blank" rel="noreferrer"
-                className="mt-7 inline-flex items-center gap-2 rounded-full bg-brand-800 px-5 py-3 text-sm font-bold text-white transition hover:bg-brand-900">
+                className="glass-action mt-7 inline-flex items-center gap-2 rounded-full bg-brand-800 px-5 py-3 text-sm font-bold text-white transition hover:bg-brand-900">
                 <MessageCircle size={17} /> Contact us on WhatsApp
               </a>
             ) : (
@@ -43,8 +43,8 @@ export default function Contact() {
           </Reveal>
 
           <Reveal delay={0.12}>
-            <div className="relative flex h-full min-h-[300px] flex-col items-center justify-center overflow-hidden rounded-[1.75rem] border border-brand-100 bg-brand-50 p-8 text-center">
-              <div aria-hidden className="absolute inset-0 opacity-40"
+            <div className="glass-card relative flex h-full min-h-[300px] flex-col items-center justify-center rounded-[1.75rem] border-brand-100 bg-brand-50/65 p-8 text-center">
+              <div aria-hidden className="glass-absolute absolute inset-0 opacity-40"
                 style={{ backgroundImage: "radial-gradient(#8bb9e7 1px, transparent 1px)", backgroundSize: "22px 22px" }} />
               <span className="relative flex h-14 w-14 items-center justify-center rounded-2xl bg-white text-brand-800 shadow-sm">
                 <MapPin size={24} />
@@ -55,7 +55,7 @@ export default function Contact() {
               </p>
               {mapUrl && (
                 <a href={mapUrl} target="_blank" rel="noreferrer"
-                  className="relative mt-5 inline-flex items-center gap-2 rounded-full border border-brand-800 px-5 py-2.5 text-sm font-bold text-brand-900 transition hover:bg-brand-800 hover:text-white">
+                  className="glass-action relative mt-5 inline-flex items-center gap-2 rounded-full border border-brand-800 px-5 py-2.5 text-sm font-bold text-brand-900 transition hover:bg-brand-800 hover:text-white">
                   Open in Google Maps <MapPin size={15} />
                 </a>
               )}

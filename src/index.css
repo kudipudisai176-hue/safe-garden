@@ -17,6 +17,80 @@ section[id], div[id="services"] { scroll-margin-top: 4.5rem; }
   .btn-gold { @apply bg-gold text-forest-dark hover:bg-gold-dark hover:text-white; }
   .btn-green { @apply bg-forest-dark text-white hover:bg-forest-soft; }
   .btn-ghost { @apply border border-white/60 text-white hover:bg-white/10; }
-  .field { @apply w-full rounded-xl border border-stone-300 bg-white px-4 py-3 text-sm text-stone-900 outline-none transition placeholder:text-stone-400 focus:border-brand-600 focus:ring-2 focus:ring-brand-600/20; }
+  .field { @apply w-full rounded-xl border border-white/80 bg-white/75 px-4 py-3 text-sm text-stone-900 outline-none backdrop-blur-md transition placeholder:text-stone-400 focus:border-brand-600 focus:ring-2 focus:ring-brand-600/20; }
   .label { @apply mb-1.5 block text-sm font-semibold text-stone-800; }
+  .glass-option {
+    transition: transform 220ms ease, border-color 220ms ease, box-shadow 220ms ease;
+  }
+
+  .glass-option:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 18px -14px rgba(24, 62, 92, 0.4);
+  }
+
+  .glass-card {
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.72);
+    background: rgba(255, 255, 255, 0.68);
+    box-shadow: 0 12px 32px -18px rgba(24, 62, 92, 0.26), inset 0 1px 0 rgba(255, 255, 255, 0.8);
+    -webkit-backdrop-filter: blur(18px) saturate(145%);
+    backdrop-filter: blur(18px) saturate(145%);
+    transition: transform 320ms cubic-bezier(0.2, 0.75, 0.25, 1), border-color 320ms ease, box-shadow 320ms ease;
+  }
+
+  .glass-card::before {
+    position: absolute;
+    z-index: 1;
+    inset: 0;
+    background: linear-gradient(115deg, transparent 20%, rgba(255, 255, 255, 0.58) 48%, transparent 76%);
+    content: "";
+    pointer-events: none;
+    transform: translateX(-125%);
+    transition: transform 850ms cubic-bezier(0.2, 0.75, 0.25, 1);
+  }
+
+  .glass-card > :not(.glass-absolute) {
+    position: relative;
+    z-index: 2;
+  }
+
+  .glass-card > .glass-absolute {
+    z-index: 1;
+  }
+
+  .glass-card:hover {
+    transform: translateY(-4px);
+    border-color: rgba(84, 159, 230, 0.42);
+    box-shadow: 0 22px 42px -24px rgba(24, 62, 92, 0.38), inset 0 1px 0 rgba(255, 255, 255, 0.9);
+  }
+
+  .glass-card:hover::before {
+    transform: translateX(125%);
+  }
+
+  .glass-action {
+    transition: transform 240ms cubic-bezier(0.2, 0.75, 0.25, 1), box-shadow 240ms ease, background-color 240ms ease;
+  }
+
+  .glass-action:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 24px -12px rgba(24, 62, 92, 0.46);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .glass-card,
+    .glass-card::before,
+    .glass-action,
+    .glass-option {
+      transition: none;
+    }
+
+    .glass-card:hover,
+    .glass-action:hover,
+    .glass-option:hover {
+      transform: none;
+    }
+  }
 }

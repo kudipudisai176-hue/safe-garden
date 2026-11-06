@@ -16,7 +16,7 @@ export default function About() {
         <Reveal>
           <div className="relative overflow-hidden rounded-[2rem] bg-brand-900">
             <img src="/images/hero.jpeg" alt="Agricultural landscape representing our laboratory's work"
-              loading="lazy" className="aspect-[4/3] w-full object-cover opacity-75" />
+              loading="lazy" className="aspect-[4/3] w-full object-cover opacity-75 transition duration-700 hover:scale-105" />
             <div className="absolute inset-0 bg-gradient-to-t from-brand-950/85 via-transparent to-transparent" />
             <div className="absolute bottom-6 left-6 right-6 text-white">
               <p className="font-display text-2xl font-bold">Better information starts with a good test.</p>

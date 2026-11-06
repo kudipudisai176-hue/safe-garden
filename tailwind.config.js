@@ -23,7 +23,7 @@ export default {
         gold: { DEFAULT: "#549FE6", dark: "#3579B5" },
       },
       fontFamily: {
-        display: ['"Fraunces"', "Georgia", "serif"],
+        display: ['"Playfair Display"', "Georgia", "serif"],
         sans: ['"Plus Jakarta Sans"', "system-ui", "sans-serif"],
       },
       boxShadow: {

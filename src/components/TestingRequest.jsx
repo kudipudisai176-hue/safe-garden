@@ -120,7 +120,7 @@ export default function TestingRequest() {
           <p className="mt-4 leading-7 text-white/70">Tell us about your sample and the testing you need. We’ll prepare an email request for you to review and send.</p>
         </Reveal>
 
-        <Reveal delay={0.08} className="mx-auto mt-10 max-w-4xl rounded-[1.75rem] bg-white p-5 text-stone-800 shadow-2xl sm:p-8 lg:p-10">
+        <Reveal delay={0.08} className="glass-card mx-auto mt-10 max-w-4xl rounded-[1.75rem] p-5 text-stone-800 sm:p-8 lg:p-10">
           <form onSubmit={submit} noValidate className="space-y-7">
             {requestError && (
               <p role="alert" className="flex items-start gap-2 rounded-xl border border-red-200 bg-red-50 p-4 text-sm leading-6 text-red-800">
@@ -157,7 +157,7 @@ export default function TestingRequest() {
               <legend className="mb-3 text-sm font-bold text-stone-800">Sample Type</legend>
               <div className="grid gap-3 sm:grid-cols-2">
                 {["Soil", "Water"].map((type) => (
-                  <label key={type} className={`flex cursor-pointer items-center gap-3 rounded-xl border p-4 transition ${
+                  <label key={type} className={`glass-option flex cursor-pointer items-center gap-3 rounded-xl border p-4 ${
                     form.sampleType === type ? "border-brand-600 bg-brand-50 ring-1 ring-brand-600" : "border-stone-200 hover:border-brand-300"
                   }`}>
                     <input type="radio" name="sampleType" value={type} checked={form.sampleType === type}
@@ -174,7 +174,7 @@ export default function TestingRequest() {
                 <p className="mb-3 text-xs text-stone-500">Choose one or more soil tests.</p>
                 <div className="grid gap-2 sm:grid-cols-2 lg:grid-cols-3">
                   {soilRequestParameters.map(({ name, detail }) => (
-                    <label key={name} className={`flex cursor-pointer items-center gap-3 rounded-xl border px-3 py-3 transition ${
+                    <label key={name} className={`glass-option flex cursor-pointer items-center gap-3 rounded-xl border px-3 py-3 ${
                       form.parameters.includes(name) ? "border-brand-600 bg-brand-50" : "border-stone-200 hover:border-brand-300"
                     }`}>
                       <input type="checkbox" checked={form.parameters.includes(name)} onChange={() => toggleParameter(name)}
@@ -206,7 +206,7 @@ export default function TestingRequest() {
 
             <div>
               <button type="submit" disabled={submitting}
-                className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-brand-800 px-6 py-3.5 text-sm font-bold text-white transition hover:bg-brand-900 disabled:cursor-wait disabled:opacity-70 sm:w-auto">
+                className="glass-action inline-flex w-full items-center justify-center gap-2 rounded-full bg-brand-800 px-6 py-3.5 text-sm font-bold text-white transition hover:bg-brand-900 disabled:cursor-wait disabled:opacity-70 sm:w-auto">
                 {submitting ? <><Loader2 size={17} className="animate-spin" /> Saving request…</>
                   : <><MessageCircle size={17} /> Send Request on WhatsApp</>}
               </button>

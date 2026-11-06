@@ -4,15 +4,18 @@ import {
   Beaker,
   CircleDot,
   Droplets,
+  Flower2,
   FlaskConical,
   Gauge,
   Leaf,
   Microscope,
   Mountain,
+  Package,
   Sprout,
   TestTube2,
   Waves,
   Zap,
+  Wheat,
 } from "lucide-react";
 
 export const company = {
@@ -32,10 +35,29 @@ export const images = {
 
 export const navItems = [
   { id: "home", label: "Home" },
-  { id: "soil-testing", label: "Soil Testing" },
-  { id: "water-testing", label: "Water Testing" },
+  {
+    id: "testing",
+    label: "Testing",
+    children: [
+      { id: "soil-testing", label: "Soil Testing" },
+      { id: "water-testing", label: "Water Testing" },
+    ],
+  },
+  { id: "field-management", label: "Field Management", path: "/field-management" },
+  { id: "products", label: "Products", path: "/products" },
   { id: "about", label: "About" },
   { id: "contact", label: "Contact" },
+];
+
+export const products = [
+  { name: "Malli", category: "Plant", icon: Flower2 },
+  { name: "Compost", category: "Organic soil input", icon: Sprout },
+  { name: "Neem powder", category: "Organic soil input", icon: Leaf },
+  { name: "Organic potash", category: "Organic fertilizer", icon: Mountain },
+  { name: "Fermented Organic manure", category: "Organic manure", icon: Wheat },
+  { name: "Plants", category: "Plants", icon: Flower2 },
+  { name: "Seeds", category: "Seeds", icon: Sprout },
+  { name: "Fertilizers", category: "Fertilizers", icon: Package },
 ];
 
 export const soilParameters = [
