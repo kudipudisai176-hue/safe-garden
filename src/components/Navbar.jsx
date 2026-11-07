@@ -18,9 +18,7 @@ export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
   const [testingOpen, setTestingOpen] = useState(false);
-  const path = window.location.pathname.replace(/\/+$/, "");
-  const isSeparatePage = path === "/products" || path === "/field-management";
-  const [activeId, setActiveId] = useState(path.slice(1) || "home");
+  const [activeId, setActiveId] = useState(window.location.hash.slice(1) || "home");
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 24);
@@ -32,29 +30,18 @@ export default function Navbar() {
   const go = (id) => {
     setOpen(false);
     setTestingOpen(false);
-    const item = navItems.find((navItem) => navItem.id === id);
-    if (item?.path) {
-      window.location.assign(item.path);
-      return;
-    }
-
-    if (isSeparatePage) {
-      window.location.assign(`/#${id}`);
-      return;
-    }
-
     setActiveId(id);
+    window.history.replaceState(null, "", `/#${id}`);
     document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
   };
 
   return (
-    <header className={`fixed inset-x-0 top-0 z-40 transition-all duration-300 ${
-      scrolled || open ? "border-b border-white/15 bg-forest-dark/75 shadow-lg backdrop-blur-xl" : "bg-transparent"
-    }`}>
-      <nav className="mx-auto flex h-16 max-w-6xl items-center justify-between px-5">
+    <header className="fixed inset-x-0 top-0 z-40 px-3 pt-3">
+      <nav className={`mx-auto flex h-16 max-w-7xl items-center justify-between rounded-2xl px-4 transition-all duration-300 sm:px-6 ${
+        scrolled || open ? "border border-white/15 bg-forest-dark/80 shadow-lg backdrop-blur-xl" : "border border-transparent bg-transparent"
+      }`}>
         <button onClick={() => go("home")} className="text-left" aria-label="Go to top">
           <span className="font-display text-2xl font-bold leading-none tracking-wide text-white">{company.brand}</span>
-          <span className="hidden text-[11px] leading-tight text-leaf-light sm:block">SOIL &amp; WATER LAB</span>
         </button>
 
         <ul className="hidden items-center gap-1 md:flex">

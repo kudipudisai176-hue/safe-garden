@@ -11,28 +11,27 @@ import Footer from "./components/Footer";
 
 export default function App() {
   const path = window.location.pathname.replace(/\/+$/, "") || "/";
-  const separatePage = path === "/products" || path === "/field-management";
 
   useEffect(() => {
-    document.title = path === "/products"
-      ? "Products | SAFE"
-      : path === "/field-management"
-        ? "Field Management | SAFE"
-        : "Soil & Water Testing Laboratory | SAFE";
-  }, [path]);
+    document.title = "Soil & Water Testing Laboratory | SAFE";
 
-  if (separatePage) {
-    const isProductsPage = path === "/products";
-    return (
-      <>
-        <Navbar />
-        <main className="min-h-screen pt-16">
-          {isProductsPage ? <Products /> : <FieldManagement />}
-        </main>
-        <Footer />
-      </>
-    );
-  }
+    const legacySection = path === "/products"
+      ? "products"
+      : path === "/field-management"
+        ? "field-management"
+        : null;
+    const sectionId = legacySection || window.location.hash.slice(1);
+
+    if (legacySection) {
+      window.history.replaceState(null, "", `/#${legacySection}`);
+    }
+
+    if (sectionId) {
+      window.requestAnimationFrame(() => {
+        document.getElementById(sectionId)?.scrollIntoView();
+      });
+    }
+  }, [path]);
 
   return (
     <>
@@ -42,6 +41,8 @@ export default function App() {
         <div id="services" className="scroll-mt-16">
           <TestingServices />
         </div>
+        <FieldManagement />
+        <Products />
         <TestingRequest />
         <About />
         <Contact />

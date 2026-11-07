@@ -2,22 +2,46 @@
 @tailwind components;
 @tailwind utilities;
 
-html { scroll-behavior: smooth; }
-body { @apply bg-cream font-sans text-forest-dark antialiased; }
-section[id], div[id="services"] { scroll-margin-top: 4.5rem; }
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 5.25rem;
+  text-rendering: optimizeLegibility;
+}
+
+body {
+  @apply bg-cream font-sans text-forest-dark antialiased;
+  min-width: 320px;
+  background-image:
+    radial-gradient(ellipse at 12% 18%, rgba(120, 180, 236, 0.12), transparent 34rem),
+    radial-gradient(ellipse at 88% 55%, rgba(84, 159, 230, 0.08), transparent 38rem);
+}
+
+section[id], div[id="services"] { scroll-margin-top: 5rem; }
+
+button, a, input, select, textarea { -webkit-tap-highlight-color: transparent; }
+button:focus-visible, a:focus-visible { outline: 3px solid rgba(84, 159, 230, 0.8); outline-offset: 3px; }
+img { display: block; }
 
 ::selection { @apply bg-brand-200 text-brand-950; }
 
 @media (prefers-reduced-motion: reduce) {
-  html { scroll-behavior: auto; }
+  html { scroll-behavior: auto; scroll-padding-top: 0; }
 }
 
 @layer components {
-  .btn { @apply inline-flex items-center justify-center gap-2 rounded-full px-6 py-3 text-sm font-semibold transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-600 focus-visible:ring-offset-2; }
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 rounded-full px-6 py-3 text-sm font-semibold transition;
+    box-shadow: 0 8px 22px -14px rgba(24, 62, 92, 0.6);
+  }
+  .btn:hover { transform: translateY(-2px); box-shadow: 0 14px 28px -16px rgba(24, 62, 92, 0.72); }
+  .btn:active { transform: translateY(0) scale(0.98); }
   .btn-gold { @apply bg-gold text-forest-dark hover:bg-gold-dark hover:text-white; }
   .btn-green { @apply bg-forest-dark text-white hover:bg-forest-soft; }
   .btn-ghost { @apply border border-white/60 text-white hover:bg-white/10; }
-  .field { @apply w-full rounded-xl border border-white/80 bg-white/75 px-4 py-3 text-sm text-stone-900 outline-none backdrop-blur-md transition placeholder:text-stone-400 focus:border-brand-600 focus:ring-2 focus:ring-brand-600/20; }
+  .field {
+    @apply w-full rounded-xl border border-white/80 bg-white/75 px-4 py-3 text-sm text-stone-900 outline-none backdrop-blur-md transition placeholder:text-stone-400 focus:border-brand-600 focus:ring-2 focus:ring-brand-600/20;
+    box-shadow: 0 1px 2px rgba(24, 62, 92, 0.04);
+  }
   .label { @apply mb-1.5 block text-sm font-semibold text-stone-800; }
   .glass-option {
     transition: transform 220ms ease, border-color 220ms ease, box-shadow 220ms ease;
@@ -71,7 +95,7 @@ section[id], div[id="services"] { scroll-margin-top: 4.5rem; }
   }
 
   .glass-action {
-    transition: transform 240ms cubic-bezier(0.2, 0.75, 0.25, 1), box-shadow 240ms ease, background-color 240ms ease;
+    transition: transform 240ms cubic-bezier(0.2, 0.75, 0.25, 1), box-shadow 240ms ease, background-color 240ms ease, color 240ms ease;
   }
 
   .glass-action:hover {
@@ -83,14 +107,23 @@ section[id], div[id="services"] { scroll-margin-top: 4.5rem; }
     .glass-card,
     .glass-card::before,
     .glass-action,
-    .glass-option {
+    .glass-option,
+    .btn,
+    .field {
       transition: none;
     }
 
     .glass-card:hover,
     .glass-action:hover,
-    .glass-option:hover {
+    .glass-option:hover,
+    .btn:hover,
+    .btn:active {
       transform: none;
     }
   }
+}
+
+@media (hover: none) {
+  .glass-card:hover { transform: none; }
+  .glass-card:hover::before { transform: translateX(-125%); }
 }

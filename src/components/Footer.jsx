@@ -10,7 +10,6 @@ export default function Footer() {
             <span className="flex h-11 w-11 items-center justify-center rounded-2xl bg-brand-300 font-display text-lg font-bold text-brand-950">S</span>
             <span>
               <span className="block font-display text-xl font-bold">{company.brand}</span>
-              <span className="block text-[10px] font-semibold tracking-[0.12em] text-brand-200">SOIL &amp; WATER LAB</span>
             </span>
           </a>
           <p className="mt-4 max-w-sm text-sm leading-6">{company.fullName} — soil and water testing services for informed agricultural decisions.</p>

@@ -43,8 +43,8 @@ export const navItems = [
       { id: "water-testing", label: "Water Testing" },
     ],
   },
-  { id: "field-management", label: "Field Management", path: "/field-management" },
-  { id: "products", label: "Products", path: "/products" },
+  { id: "field-management", label: "Field Management" },
+  { id: "products", label: "Products" },
   { id: "about", label: "About" },
   { id: "contact", label: "Contact" },
 ];
@@ -54,6 +54,7 @@ export const products = [
   { name: "Compost", category: "Organic soil input", icon: Sprout },
   { name: "Neem powder", category: "Organic soil input", icon: Leaf },
   { name: "Organic potash", category: "Organic fertilizer", icon: Mountain },
+  { name: "Bio fertilizers", category: "Bio fertilizer", icon: Sprout },
   { name: "Fermented Organic manure", category: "Organic manure", icon: Wheat },
   { name: "Plants", category: "Plants", icon: Flower2 },
   { name: "Seeds", category: "Seeds", icon: Sprout },

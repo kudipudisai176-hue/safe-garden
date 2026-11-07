@@ -1,67 +1,70 @@
-import { ArrowRight, Check, FlaskConical } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import { motion } from "framer-motion";
 import { images, soilParameters, waterParameters } from "../config/site";
 import Reveal from "./Reveal";
 
-function ParameterCard({ parameter, index, tone }) {
+function ParameterItem({ parameter, index }) {
   const Icon = parameter.icon;
   return (
-    <motion.article initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-30px" }} transition={{ duration: 0.4, delay: (index % 4) * 0.045 }}
-    className="glass-card group rounded-2xl p-4 sm:p-5">
-      <div className="flex items-start justify-between gap-3">
-        <span className={`flex h-10 w-10 items-center justify-center rounded-xl ${
-          "bg-brand-50 text-brand-800"
-        }`}>
-          <Icon size={19} strokeWidth={1.8} />
+    <motion.li
+      initial={{ opacity: 0, y: 8 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: "-20px" }}
+      transition={{ duration: 0.3, delay: Math.min(index, 6) * 0.035 }}
+      title={`${parameter.name}${parameter.detail ? ` — ${parameter.detail}` : ""}: ${parameter.description}`}
+      className="flex min-w-0 items-center gap-2.5 rounded-xl border border-white/70 bg-white/45 px-2.5 py-2 shadow-sm transition-colors hover:bg-white/80 sm:px-3"
+    >
+      <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-brand-50/90 text-brand-800">
+        <Icon size={19} strokeWidth={1.8} />
+      </span>
+      <span className="min-w-0">
+        <span className="block truncate text-sm font-semibold text-stone-800">{parameter.name}</span>
+        <span className="block truncate text-[11px] leading-4 text-stone-500">
+          {parameter.detail || parameter.description}
         </span>
-        <span className="mt-1 flex h-5 w-5 items-center justify-center rounded-full bg-brand-50 text-brand-700 opacity-0 transition group-hover:opacity-100">
-          <Check size={12} />
-        </span>
-      </div>
-      <h3 className="mt-4 font-display text-lg font-bold text-stone-900">{parameter.name}</h3>
-      {parameter.detail && <p className="mt-0.5 text-[11px] font-semibold uppercase tracking-wide text-stone-500">{parameter.detail}</p>}
-      <p className="mt-2 text-sm leading-6 text-stone-600">{parameter.description}</p>
-    </motion.article>
+      </span>
+    </motion.li>
   );
 }
 
 function TestingSection({ id, title, eyebrow, description, parameters, image, tone }) {
   return (
-    <section id={id} className={`scroll-mt-20 py-20 sm:py-24 ${tone === "soil" ? "bg-white" : "bg-[#f4f8fc]"}`}>
+    <section id={id} className={`scroll-mt-20 py-12 sm:py-16 ${tone === "soil" ? "bg-white" : "bg-[#f4f8fc]"}`}>
       <div className="mx-auto max-w-7xl px-5 lg:px-8">
-        <Reveal className="grid items-center gap-8 lg:grid-cols-[.8fr_1.2fr] lg:gap-14">
-          <div className="group relative min-h-[240px] overflow-hidden rounded-[1.75rem] bg-brand-100 sm:min-h-[300px]">
-            <img src={image} alt={`${title} laboratory testing`} loading="lazy"
-              className="absolute inset-0 h-full w-full object-cover transition duration-700 group-hover:scale-105"
-              onError={(event) => { event.currentTarget.style.display = "none"; }} />
-            <div className="absolute inset-0 bg-gradient-to-t from-brand-950/75 via-transparent to-transparent" />
-            <div className="absolute bottom-5 left-5 flex items-center gap-3 text-white">
-              <span className="flex h-11 w-11 items-center justify-center rounded-xl bg-white/15 backdrop-blur"><FlaskConical size={21} /></span>
-              <span className="font-semibold">{title} parameters</span>
+        <Reveal className="grid items-center gap-7 lg:grid-cols-[1.15fr_.85fr] lg:gap-10">
+          <div className="order-2 lg:order-1">
+            <div className="glass-card rounded-[1.75rem] p-4 sm:p-5">
+              <div className="mb-4 flex items-center justify-between gap-3">
+                <h3 className="font-display text-lg font-bold text-stone-900">Test parameters</h3>
+                <span className="rounded-full border border-white/80 bg-white/65 px-3 py-1 text-xs font-semibold text-stone-600 shadow-sm">
+                  {parameters.length} tests
+                </span>
+              </div>
+              <ul className="grid grid-cols-2 gap-2">
+                {parameters.map((parameter, index) => (
+                  <ParameterItem key={parameter.name} parameter={parameter} index={index} />
+                ))}
+              </ul>
             </div>
           </div>
-          <div>
-            <p className="text-xs font-bold uppercase tracking-[0.18em] text-brand-700">{eyebrow}</p>
-            <h2 className="mt-3 font-display text-3xl font-bold tracking-tight text-stone-950 sm:text-4xl">{title}</h2>
-            <p className="mt-4 max-w-2xl leading-7 text-stone-600">{description}</p>
-            <div className="mt-6 inline-flex items-center gap-2 rounded-full bg-white px-4 py-2 text-sm font-semibold text-stone-700 shadow-sm ring-1 ring-stone-200">
-              <span className="h-2 w-2 rounded-full bg-brand-500" />
-              {parameters.length} test parameters available
+
+          <div className="order-1 lg:order-2">
+            <div className="group relative aspect-[16/10] w-full overflow-hidden rounded-[1.75rem] border border-white/80 bg-brand-100 shadow-[0_20px_50px_-28px_rgba(24,62,92,0.42)]">
+              <img src={image} alt={`${title} laboratory testing`} loading="lazy"
+                className="h-full w-full object-cover transition duration-700 group-hover:scale-[1.03]"
+                onError={(event) => { event.currentTarget.style.display = "none"; }} />
+              <div className="pointer-events-none absolute inset-0 rounded-[1.75rem] ring-1 ring-inset ring-white/25" />
+            </div>
+            <div className="px-1 pt-5 sm:px-2">
+              <p className="text-xs font-bold uppercase tracking-[0.18em] text-brand-700">{eyebrow}</p>
+              <h2 className="mt-3 font-display text-3xl font-bold tracking-tight text-stone-950 sm:text-4xl">{title}</h2>
+              <p className="mt-4 max-w-2xl leading-7 text-stone-600">{description}</p>
+              <a href="#request" className="glass-action mt-5 inline-flex items-center gap-2 rounded-full border border-white/80 bg-white/70 px-5 py-2.5 text-sm font-bold text-brand-900 shadow-sm backdrop-blur-xl transition hover:bg-white">
+                Request {tone === "soil" ? "Soil" : "Water"} Testing <ArrowRight size={16} />
+              </a>
             </div>
           </div>
         </Reveal>
-
-        <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-          {parameters.map((parameter, index) => (
-            <ParameterCard key={parameter.name} parameter={parameter} index={index} tone={tone} />
-          ))}
-        </div>
-        <div className="mt-8 flex justify-center">
-          <a href="#request" className="glass-action inline-flex items-center gap-2 rounded-full bg-brand-800 px-6 py-3 text-sm font-bold text-white transition hover:bg-brand-900">
-            Request {tone === "soil" ? "Soil" : "Water"} Testing <ArrowRight size={16} />
-          </a>
-        </div>
       </div>
     </section>
   );

@@ -18,8 +18,8 @@ export default function FieldManagement() {
     : null;
 
   return (
-    <div className="bg-white">
-      <section className="relative isolate overflow-hidden bg-brand-950 py-20 text-white sm:py-28">
+    <div id="field-management" className="scroll-mt-20 bg-white">
+      <section className="relative isolate overflow-hidden bg-brand-950 py-16 text-white sm:py-24">
         <div className="absolute inset-0 -z-10">
           <img src="/images/field-maintenance.jpg" alt="" className="h-full w-full object-cover opacity-25" />
           <div className="absolute inset-0 bg-gradient-to-r from-brand-950/95 via-brand-950/85 to-brand-900/65" />
@@ -43,7 +43,7 @@ export default function FieldManagement() {
         </div>
       </section>
 
-      <section className="bg-[#f4f8fc] py-16 sm:py-20">
+      <section className="bg-[#f4f8fc]/85 py-14 sm:py-20">
         <div className="mx-auto max-w-7xl px-5 lg:px-8">
           <Reveal className="mx-auto max-w-2xl text-center">
             <p className="text-xs font-bold uppercase tracking-[0.18em] text-brand-700">Support for your land</p>

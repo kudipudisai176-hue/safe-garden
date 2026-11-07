@@ -7,7 +7,7 @@ export default function Products() {
   const whatsappNumber = company.whatsappNumber.replace(/\D/g, "");
 
   return (
-    <section id="products" className="scroll-mt-20 bg-[#f4f8fc] py-20 sm:py-24">
+    <section id="products" className="scroll-mt-20 bg-[#f4f8fc]/85 py-16 sm:py-20">
       <div className="mx-auto max-w-7xl px-5 lg:px-8">
         <Reveal className="mx-auto max-w-2xl text-center">
           <p className="text-xs font-bold uppercase tracking-[0.18em] text-brand-700">For your growing needs</p>
@@ -29,7 +29,7 @@ export default function Products() {
                 whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "-30px" }}
                 transition={{ duration: 0.4, delay: (index % 4) * 0.06 }}
                 className="glass-card group rounded-2xl p-5 sm:p-6">
-                <span className="flex h-12 w-12 items-center justify-center rounded-2xl bg-brand-50 text-brand-800 transition duration-300 group-hover:scale-110 group-hover:bg-brand-100">
+                <span className="flex h-12 w-12 items-center justify-center rounded-2xl bg-brand-50 text-brand-800 transition duration-300 group-hover:rotate-3 group-hover:scale-110 group-hover:bg-brand-100">
                   <Icon size={22} strokeWidth={1.8} />
                 </span>
                 <p className="mt-5 text-xs font-semibold uppercase tracking-[0.12em] text-brand-700">{category}</p>
