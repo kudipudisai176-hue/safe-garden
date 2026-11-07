@@ -32,7 +32,9 @@ export default function Navbar() {
     setTestingOpen(false);
     setActiveId(id);
     window.history.replaceState(null, "", `/#${id}`);
-    document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
+    window.requestAnimationFrame(() => {
+      document.getElementById(id)?.scrollIntoView({ behavior: "smooth", block: "start" });
+    });
   };
 
   return (
