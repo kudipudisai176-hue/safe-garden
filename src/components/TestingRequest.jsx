@@ -36,10 +36,12 @@ export default function TestingRequest() {
   const [errors, setErrors] = useState({});
   const [notice, setNotice] = useState("");
   const [requestError, setRequestError] = useState("");
+  const [whatsappFallbackUrl, setWhatsappFallbackUrl] = useState("");
   const [submitting, setSubmitting] = useState(false);
   const update = (key) => (event) => {
     setForm((current) => ({ ...current, [key]: event.target.value }));
     setErrors((current) => ({ ...current, [key]: "" }));
+    setWhatsappFallbackUrl("");
   };
 
   const toggleParameter = (name) => {
@@ -50,11 +52,13 @@ export default function TestingRequest() {
         : [...current.parameters, name],
     }));
     setErrors((current) => ({ ...current, parameters: "" }));
+    setWhatsappFallbackUrl("");
   };
 
   const chooseSampleType = (sampleType) => {
     setForm((current) => ({ ...current, sampleType, parameters: [] }));
     setErrors((current) => ({ ...current, parameters: "" }));
+    setWhatsappFallbackUrl("");
   };
 
   const submit = async (event) => {
@@ -74,6 +78,7 @@ export default function TestingRequest() {
     setErrors(nextErrors);
     setNotice("");
     setRequestError("");
+    setWhatsappFallbackUrl("");
     if (Object.keys(nextErrors).length) return;
 
     const requestDetails = [
@@ -95,6 +100,7 @@ export default function TestingRequest() {
       setRequestError("WhatsApp contact is not configured. Please contact the laboratory.");
       return;
     }
+    const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(requestDetails)}`;
 
     setSubmitting(true);
     try {
@@ -103,10 +109,10 @@ export default function TestingRequest() {
         mobile: form.phone.trim(),
         message: requestDetails,
       });
-      const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(requestDetails)}`;
       window.location.assign(whatsappUrl);
     } catch (error) {
       setRequestError(error.message);
+      setWhatsappFallbackUrl(whatsappUrl);
       setSubmitting(false);
     }
   };
@@ -137,6 +143,7 @@ export default function TestingRequest() {
                   value={form.phone} onChange={(event) => {
                     setForm((current) => ({ ...current, phone: event.target.value.replace(/\D/g, "") }));
                     setErrors((current) => ({ ...current, phone: "" }));
+                    setWhatsappFallbackUrl("");
                   }} />
               </Field>
               <Field id="request-email" label="Email Address" error={errors.email}>
@@ -210,9 +217,17 @@ export default function TestingRequest() {
                 {submitting ? <><Loader2 size={17} className="animate-spin" /> Saving request…</>
                   : <><MessageCircle size={17} /> Send Request on WhatsApp</>}
               </button>
+              {whatsappFallbackUrl && (
+                <a href={whatsappFallbackUrl} target="_blank" rel="noreferrer"
+                  className="glass-action mt-3 inline-flex w-full items-center justify-center gap-2 rounded-full border border-brand-800 px-6 py-3.5 text-sm font-bold text-brand-900 hover:bg-brand-50 sm:ml-3 sm:mt-0 sm:w-auto">
+                  <MessageCircle size={17} /> Send directly via WhatsApp
+                </a>
+              )}
               {notice && <p role="status" className="mt-3 text-sm text-brand-800">{notice}</p>}
               <p className="mt-3 text-xs leading-5 text-stone-500">
-                Your request is saved by the laboratory backend first, then WhatsApp opens with the details ready to send. Tap Send in WhatsApp to message the laboratory.
+                {whatsappFallbackUrl
+                  ? "The request was not saved on this website because its server is unavailable. Use the WhatsApp button above to send it directly; tap Send in WhatsApp to message the laboratory."
+                  : "Your request is saved by the laboratory backend first, then WhatsApp opens with the details ready to send. Tap Send in WhatsApp to message the laboratory."}
               </p>
             </div>
           </form>

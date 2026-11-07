@@ -29,7 +29,9 @@ VITE_CONTACT_ADDRESS=
 VITE_WHATSAPP_NUMBER=918497957002
 ```
 
-`VITE_WHATSAPP_NUMBER` must contain digits only, including the country code. The testing request form validates the fields, saves the request through the backend contact endpoint, then opens WhatsApp with a prefilled message. The customer must tap **Send** in WhatsApp to message the laboratory. For a deployed frontend, set `VITE_API_URL` to the backend URL and configure the backend `CLIENT_ORIGINS` to allow the frontend's origin.
+`VITE_WHATSAPP_NUMBER` must contain digits only, including the country code. The testing request form validates the fields, saves the request through the backend contact endpoint, then opens WhatsApp with a prefilled message. The customer must tap **Send** in WhatsApp to message the laboratory.
+
+For production, deploy the Express backend as a separate service, set the frontend's `VITE_API_URL` to its public base URL in the Vercel project settings, and set the backend's `CLIENT_ORIGINS` to the exact deployed frontend origin (for example, `https://safe-garden-rho.vercel.app`). Since Vite embeds `VITE_API_URL` at build time, redeploy the frontend after changing it. Verify the backend responds with `{"status":"ok"}` at `/api/health`. If the backend is unavailable, the request form offers a direct WhatsApp fallback and clearly states that the website could not save the request.
 
 ## Images
 

@@ -8,7 +8,11 @@ async function request(path, options = {}) {
       ...options,
     });
   } catch {
-    throw new Error("Cannot reach the server. Check your connection and try again.");
+    throw new Error("The laboratory request server is unreachable. Check your connection or send your request directly through WhatsApp below.");
+  }
+  const contentType = res.headers.get("content-type") || "";
+  if (res.status === 404 && !contentType.includes("application/json")) {
+    throw new Error("The laboratory request server is not connected to this website yet. You can still send your request directly through WhatsApp below.");
   }
   const data = await res.json().catch(() => ({}));
   if (!res.ok) {
