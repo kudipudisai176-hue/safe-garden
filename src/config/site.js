@@ -20,7 +20,7 @@ import {
 
 export const company = {
   brand: "SAFE",
-  fullName: "Sumitra Agro Food Enterprises",
+  fullName: "Pure from roots of nature",
   phone: import.meta.env.VITE_CONTACT_PHONE || "8497957002",
   email: import.meta.env.VITE_CONTACT_EMAIL || "info.safeagro@gmail.com",
   address: import.meta.env.VITE_CONTACT_ADDRESS || "",
@@ -50,14 +50,11 @@ export const navItems = [
 ];
 
 export const products = [
-  { name: "Malli", category: "Plant", icon: Flower2 },
   { name: "Compost", category: "Organic soil input", icon: Sprout },
   { name: "Neem powder", category: "Organic soil input", icon: Leaf },
   { name: "Organic potash", category: "Organic fertilizer", icon: Mountain },
   { name: "Bio fertilizers", category: "Bio fertilizer", icon: Sprout },
   { name: "Fermented Organic manure", category: "Organic manure", icon: Wheat },
-  { name: "Plants", category: "Plants", icon: Flower2 },
-  { name: "Seeds", category: "Seeds", icon: Sprout },
   { name: "Fertilizers", category: "Fertilizers", icon: Package },
 ];
 

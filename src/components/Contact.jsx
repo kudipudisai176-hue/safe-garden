@@ -23,7 +23,7 @@ export default function Contact() {
           <Reveal delay={0.06} className="glass-card rounded-[1.75rem] p-6 sm:p-8">
             <h3 className="font-display text-xl font-bold text-stone-900">Laboratory Details</h3>
             <div className="mt-6 space-y-5">
-              <ContactItem icon={MapPin} label="Laboratory Name" value={company.fullName} />
+              <ContactItem icon={MapPin} label="Brand tagline" value={company.fullName} />
               <ContactItem icon={Phone} label="Mobile Number" value={valueOrPending(company.phone)}
                 href={company.phone ? `tel:${company.phone.replace(/[^\d+]/g, "")}` : undefined} />
               <ContactItem icon={Mail} label="Email" value={valueOrPending(company.email)}

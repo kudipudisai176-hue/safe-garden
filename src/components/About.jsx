@@ -30,7 +30,7 @@ export default function About() {
           <h2 className="mt-3 font-display text-3xl font-bold tracking-tight text-stone-950 sm:text-4xl">About Our Laboratory</h2>
           <p className="mt-5 leading-7 text-stone-600">
             Reliable soil and water analysis can help turn sample results into more informed agricultural decisions.
-            {" "}{company.fullName} supports farmers and agricultural development through careful, science-based testing services.
+            {" "}Our commitment, “{company.fullName},” guides our careful, science-based support for farmers and agricultural development.
           </p>
           <div className="mt-8 grid gap-5 sm:grid-cols-2">
             {commitments.map(({ icon: Icon, title, text }) => (

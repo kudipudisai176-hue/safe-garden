@@ -48,7 +48,7 @@ export default function Footer() {
         </div>
       </div>
       <p className="border-t border-white/10 px-5 py-5 text-center text-xs">
-        © {new Date().getFullYear()} {company.fullName}. All rights reserved.
+        © {new Date().getFullYear()} {company.brand}. All rights reserved.
       </p>
     </footer>
   );

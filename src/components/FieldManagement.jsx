@@ -1,4 +1,4 @@
-import { ArrowRight, Droplets, Leaf, MapPin, Shovel, Sprout, Tractor } from "lucide-react";
+import { ArrowRight, Leaf, Lightbulb, MapPin, Shovel, Sprout, Tractor } from "lucide-react";
 import { motion } from "framer-motion";
 import { company } from "../config/site";
 import Reveal from "./Reveal";
@@ -6,7 +6,7 @@ import Reveal from "./Reveal";
 const fieldServices = [
   { icon: Sprout, title: "Crop and field care", description: "Practical field support to help keep crop areas healthy and productive." },
   { icon: Shovel, title: "Land preparation", description: "Field preparation and maintenance support based on your land's needs." },
-  { icon: Droplets, title: "Water and irrigation", description: "Guidance for field water use and irrigation-related maintenance." },
+  { icon: Lightbulb, title: "Consultancy services", description: "Expert guidance on crop planning, soil health, and field management tailored to your land and goals." },
   { icon: Leaf, title: "Ongoing maintenance", description: "Seasonal upkeep to help maintain clean, organized agricultural land." },
 ];
 
@@ -43,7 +43,7 @@ export default function FieldManagement() {
         </div>
       </section>
 
-      <section className="bg-[#f4f8fc]/85 py-14 sm:py-20">
+      <section className="bg-[#edf5fd] py-14 sm:py-20">
         <div className="mx-auto max-w-7xl px-5 lg:px-8">
           <Reveal className="mx-auto max-w-2xl text-center">
             <p className="text-xs font-bold uppercase tracking-[0.18em] text-brand-700">Support for your land</p>
@@ -56,7 +56,7 @@ export default function FieldManagement() {
               <motion.article key={title} initial={{ opacity: 0, y: 16 }}
                 whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "-30px" }}
                 transition={{ duration: 0.4, delay: index * 0.06 }}
-                className="glass-card rounded-2xl p-5 sm:p-6">
+                className="glass-card rounded-2xl border-brand-100 bg-white p-5 shadow-md sm:p-6">
                 <span className="flex h-12 w-12 items-center justify-center rounded-2xl bg-brand-50 text-brand-800">
                   <Icon size={22} />
                 </span>
